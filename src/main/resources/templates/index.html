@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="ProjectApp" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Quartz Plugin</title>
+    <link rel="stylesheet" th:href="@{'css/project-style.css'}">
+    <link rel="stylesheet" th:href="@{'external/angular-material/angular-material.min.css'}">
+</head>
+<body>
+<hr/>
+<div>
+    <div ng-controller="JobController">
+        <form id="jobForm">
+            <div layout="column" layout-align="start center">
+                <div>
+                    jobClassName:<input type="text" ng-model="model.jobClassName">
+                </div>
+                <div>
+                    jobGroupName:<input type="text" ng-model="model.jobGroupName">
+                </div>
+                <div>
+                    cronExpression:<input type="text" ng-model="model.cronExpression">
+                </div>
+                <md-button ng-click="submit()" class="md-raised md-primary">创建</md-button>
+            </div>
+        </form>
+
+        <div layout="column" layout-align="start center">
+            <div layout="column" layout-align="start center" layout-wrap ng-repeat="job in jobs">
+                <div>Job{{$index}}:</div>
+                <div>Job类: {{job.jobClass}}</div>
+                <div>cron: {{job.jobCron}}</div>
+            </div>
+            <md-button ng-click="getJobs()" class="md-raised md-primary">刷新</md-button>
+        </div>
+    </div>
+</div>
+</body>
+<script th:src="@{'external/angular/angular.min.js?t='+${timestamp}}"></script>
+<script th:src="@{'external/angular/angular-animate.min.js?t='+${timestamp}}"></script>
+<script th:src="@{'external/angular/angular-aria.min.js?t='+${timestamp}}"></script>
+<script th:src="@{'external/angular/angular-messages.min.js?t='+${timestamp}}"></script>
+<script th:src="@{'external/angular-material/angular-material.min.js?t='+${timestamp}}"></script>
+<script th:src="@{'js/app.js?t='+${timestamp}}"></script>
+<script th:src="@{'js/job/job.js?t='+${timestamp}}"></script>
+</html>
